@@ -2,6 +2,7 @@ const config = {
   env: {
     apiEndPoint:
       process.env.NEXT_PUBLIC_API_ENDPOINT || "http://localhost:3000",
+    prodApiEndPoint: process.env.NEXT_PUBLIC_PROD_API_ENDPOINT!,
   },
   image: {
     imagekit: {
@@ -16,6 +17,9 @@ const config = {
     redisToken: process.env.UPSTASH_REDIS_REST_TOKEN || "",
     qstashUrl: process.env.QSTASH_URL || "",
     qstashToken: process.env.QSTASH_TOKEN || "",
+  },
+  resend: {
+    resendToken: process.env.RESEND_TOKEN || "",
   },
 };
 
