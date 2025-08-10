@@ -37,13 +37,17 @@ const getUserState = async (email: string): Promise<UserState> => {
 export const { POST } = serve<InitialData>(async (context) => {
   const { email, fullName } = context.requestPayload;
 
-  // Welcome Email
   await context.run("new-signup", async () => {
-    await sendEmail({
-      email,
-      subject: "Welcome to the platform",
-      message: `Welcome ${fullName}!`,
-    });
+    try {
+      await sendEmail({
+        email,
+        subject: "Welcome to the platform",
+        message: `Welcome ${fullName}!`,
+      });
+    } catch (err) {
+      console.error("Email send failed:", err);
+      return false;
+    }
   });
 
   await context.sleep("wait-for-3-days", THREE_DAY_IN_MS);
