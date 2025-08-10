@@ -3,7 +3,6 @@
 import React, { useRef, useState } from "react";
 import { IKImage, ImageKitProvider, IKUpload } from "imagekitio-next";
 import config from "@/lib/config";
-import ImageKit from "imagekit";
 import Image from "next/image";
 import { toast } from "sonner";
 
@@ -13,7 +12,9 @@ const {
 
 const authenticator = async () => {
   try {
-    const response = await fetch(`${config.env.apiEndPoint}/api/auth/imagekit`);
+    const response = await fetch(
+      `${config.env.prodApiEndPoint}/api/auth/imagekit`
+    );
 
     if (!response.ok) {
       const errorText = await response.text();
